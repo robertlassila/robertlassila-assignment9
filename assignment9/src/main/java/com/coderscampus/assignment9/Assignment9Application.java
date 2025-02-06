@@ -14,16 +14,6 @@ public class Assignment9Application {
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(Assignment9Application.class, args);
 
-//		Reader in = new FileReader("recipes.txt");
-//		Iterable<CSVRecord> records = CSVFormat.DEFAULT
-//				.withIgnoreSurroundingSpaces()
-//				.withHeader()
-//				.withSkipHeaderRecord()
-//				.parse(in);
-//		for (CSVRecord record : records) {
-//			int cookingMinutes = Integer.parseInt(record.get("Cooking Minutes"));
-//			boolean dairyFree = Boolean.parseBoolean(record.get("Dairy Free"));
-//		}
 	}
 
 

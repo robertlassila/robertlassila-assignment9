@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RecipeService {
@@ -27,6 +28,30 @@ public class RecipeService {
             throw new RuntimeException(e);
         }
     }
+    public List<Recipe> getGlutenFreeRecipes() {
+        return recipes.stream()
+                .filter(recipe -> recipe.getGlutenFree().equals(true))
+                .collect(Collectors.toList());
+    }
+
+    public List<Recipe> getVeganRecipes() {
+        return recipes.stream()
+                .filter(recipe -> recipe.getVegan().equals(true))
+                .collect(Collectors.toList());
+    }
+    public List<Recipe> getVeganAndGlutenFreeRecipes() {
+        return recipes.stream()
+                .filter(recipe -> recipe.getVegan().equals(true))
+                .filter(recipe -> recipe.getGlutenFree().equals(true))
+                .collect(Collectors.toList());
+    }
+
+    public List<Recipe> getVegetarianRecipes() {
+        return recipes.stream()
+                .filter(recipe -> recipe.getVegetarian().equals(true))
+                .collect(Collectors.toList());
+    }
+
     public List<Recipe> getRecipes() {
         return recipes;
     }
@@ -72,6 +97,5 @@ public class RecipeService {
         }
         return recipes;
     }
-
 
 }
