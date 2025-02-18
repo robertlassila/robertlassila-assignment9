@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,30 +27,11 @@ public class RecipeService {
         return recipeRepository.getAllRecipes();
     }
 
-    public List<Recipe> getGlutenFreeRecipes() {
+    public List<Recipe> getFilteredRecipes(Predicate<Recipe> filter) {
         return getRecipes().stream()
-                .filter(recipe -> recipe.getGlutenFree())
+                .filter(filter)
                 .collect(Collectors.toList());
     }
-
-    public List<Recipe> getVeganRecipes() {
-        return getRecipes().stream()
-                .filter(recipe -> recipe.getVegan())
-                .collect(Collectors.toList());
-    }
-    public List<Recipe> getVeganAndGlutenFreeRecipes() {
-        return getRecipes().stream()
-                .filter(recipe -> recipe.getVegan())
-                .filter(recipe -> recipe.getGlutenFree())
-                .collect(Collectors.toList());
-    }
-
-    public List<Recipe> getVegetarianRecipes() {
-        return getRecipes().stream()
-                .filter(recipe -> recipe.getVegetarian())
-                .collect(Collectors.toList());
-    }
-
-    }
+}
 
 

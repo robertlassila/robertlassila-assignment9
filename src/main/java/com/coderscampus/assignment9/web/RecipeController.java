@@ -11,10 +11,8 @@ import java.util.List;
 @RestController
 public class RecipeController {
 
-
     private final RecipeService recipeService;
-
-    @Autowired
+    
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
@@ -26,22 +24,22 @@ public class RecipeController {
 
     @GetMapping("/gluten-free")
     public List<Recipe> getGlutenFreeRecipes() {
-        return recipeService.getGlutenFreeRecipes();
+        return recipeService.getFilteredRecipes(Recipe::getGlutenFree);
     }
 
     @GetMapping("/vegan")
     public List<Recipe> getVeganRecipes() {
-        return recipeService.getVeganRecipes();
+        return recipeService.getFilteredRecipes(Recipe::getVegan);
     }
 
     @GetMapping("/vegan-and-gluten-free")
     public List<Recipe> getVeganAndGlutenFreeRecipes() {
-        return recipeService.getVeganAndGlutenFreeRecipes();
+        return recipeService.getFilteredRecipes(recipe -> recipe.getVegan() && recipe.getGlutenFree());
     }
 
     @GetMapping("/vegetarian")
     public List<Recipe> getVegetarianRecipes() {
-        return recipeService.getVegetarianRecipes();
+        return recipeService.getFilteredRecipes(Recipe::getVegetarian);
     }
 
     @GetMapping("/all-recipes")
